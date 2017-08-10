@@ -1,0 +1,79 @@
+group 'com.lk'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()//依赖Maven仓库
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        flatDir {
+            dirs 'lib'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework:springloaded:1.2.4.RELEASE")
+    }
+//    dependencies {
+//        //使用1.4.2.RELEASE版本的Spring框架
+//
+//        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+//    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+        testOutputDir = file("$buildDir/classes/test/")
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+//设置jdk的版本
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//添加编译时的依赖
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-data-redis")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-devtools")
+    //compile("org.springframework.boot:spring-boot-starter-log4j2:$springBootVersion")
+
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    compile("javax.servlet:jstl:$jstlVersion")
+    //compile("org.bouncycastle:bcprov-jdk16")
+
+    //compile files('lib/ojdbc14.jar')
+    runtime('mysql:mysql-connector-java')
+    //providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    //testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+
+}
+
+bootRun {
+    addResources = true
+}
+
+
+

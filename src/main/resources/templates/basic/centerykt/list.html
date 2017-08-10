@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+</head>
+<body>
+<h2>List of Regions</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>S.No</th>
+        <th>Center No</th>
+        <th>Center Name</th>
+        <th>Action</th>
+    </tr>
+    <tbody>
+        <tr th:each="ob,itr : ${centerYkts}">
+            <td th:text="${itr.index+1}"></td>
+            <td th:text="${ob.centerNo}"></td>
+            <td th:text="${ob.centerName}"></td>
+            <td><a th:href="@{/basic/centerYkt!edit/{id}(id=${ob.centerNo})}" class="btn btn-warning">Edit</a> </td>
+        </tr>
+    </tbody>
+
+</table>
+<a href="centerYkt!create" class="btn btn-success">Add</a>
+
+<script type="application/javascript" src="../js/jquery.js"></script>
+<script type="application/javascript" src="../js/bootstrap.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Insert title here</title>
+    <link type="text/css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+</head>
+<body>
+<h2>Edit Region</h2>
+<form action="#" th:action="@{/basic/centerYkt!update}" method="post" th:object="${basicCenterYkt}">
+    <input type="hidden" name="centerNo" value="" th:value="*{centerNo}"/>
+    <table class="table table-bordered">
+        <tbody>
+        <tr><th>Center Name</th><td><input type="text" name="centerName" required="required" th:value="*{centerName}"/></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Edit Center" class="btn btn-success"/></td></tr>
+        </tbody>
+    </table>
+</form>
+<a th:href="@{/basic/centerYkt}" class="btn btn-success">Back</a>
+
+<script type="application/javascript" src="js/jquery.js"></script>
+<script type="application/javascript" src="js/bootstrap.js"></script>
+
+
+</body>
+</html>
